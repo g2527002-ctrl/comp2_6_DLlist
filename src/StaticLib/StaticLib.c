@@ -23,26 +23,84 @@ void initialize_list(list* l)
 // 先頭にデータを追加
 void push_front(list* l, node* p)
 {
+    if (l->header == NULL) {
+        // パターンA：リストがまだ空っぽの場合
+        // 先頭も末尾も、この新しいノード(p)になります
+        l->header = p;
+        l->footer = p;
+        p->pNext = NULL;
+        p->pPrev = NULL;
+    }
+    else {
+      
+        p->pNext = l->header;
+
+     
+        l->header->pPrev = p;
+
+     
+        l->header = p;
+
+      
+        p->pPrev = NULL;
+    }
 }
 
 // 末尾にデータを追加
 void push_back(list* l, node* p)
 {
+    if (l->footer == NULL) {
+       
+        l->header = p;
+        l->footer = p;
+        p->pNext = NULL;
+        p->pPrev = NULL;
+    }
+    else {
+        
+        l->footer->pNext = p;
+
+        
+        p->pPrev = l->footer;
+
+       
+        l->footer = p;
+
+       
+        p->pNext = NULL;
+    }
 }
 
 // pのノードを削除
 void remove_node(list* l, node* p)
 {
+    if (p->pPrev == NULL)
+        l->header = p->pNext;
+    else
+        p->pPrev->pNext = p->pNext;
+
+    if (p->pNext == NULL)
+        l->footer = p->pPrev;
+    else
+        p->pNext->pPrev = p->pPrev;
 }
 
 // pの次のノードを削除
 void remove_next(list* l, node* p)
 {
+    if (p->pNext != NULL)
+    {
+        remove_node(l, p->pNext);
+    }
 }
 
 // pの前のノードを削除
 void remove_prev(list* l, node* p)
 {
+    if (p->pPrev != NULL)
+    {
+        remove_node(l, p->pPrev);
+    }
 }
 
 
