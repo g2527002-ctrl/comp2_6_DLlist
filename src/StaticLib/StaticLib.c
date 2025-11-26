@@ -23,7 +23,8 @@ void initialize_list(list* l)
 // 先頭にデータを追加
 void push_front(list* l, node* p)
 {
-    if (l->header == NULL) {
+    if (l->header == NULL) 
+    {
         // パターンA：リストがまだ空っぽの場合
         // 先頭も末尾も、この新しいノード(p)になります
         l->header = p;
@@ -31,7 +32,8 @@ void push_front(list* l, node* p)
         p->pNext = NULL;
         p->pPrev = NULL;
     }
-    else {
+    else 
+    {
       
         p->pNext = l->header;
 
@@ -49,14 +51,16 @@ void push_front(list* l, node* p)
 // 末尾にデータを追加
 void push_back(list* l, node* p)
 {
-    if (l->footer == NULL) {
+    if (l->footer == NULL) 
+    {
        
         l->header = p;
         l->footer = p;
         p->pNext = NULL;
         p->pPrev = NULL;
     }
-    else {
+    else
+    {
         
         l->footer->pNext = p;
 
